@@ -2,7 +2,7 @@ import Sequelize, { Model } from "sequelize";
 import bcryptjs from 'bcryptjs';
 
 
-export default class Aluno  extends Model{
+export default class Professor  extends Model{
 
     static init(sequelize) {
 

@@ -1,9 +1,10 @@
 import  Sequelize  from "sequelize";
 import databaseConfig from "../config/database";
+import Admin from "../models/admin";
 import Aluno from "../models/aluno";
 
 
-const models = [Aluno, User, Foto];
+const models = [Aluno, Admin];
 
 const connection = new Sequelize(databaseConfig);
 
