@@ -1,4 +1,3 @@
 .env
-.sequelize
 node_modules
 package-lock
