@@ -13,11 +13,58 @@ export default class Professor  extends Model{
                 validate:{
                     len: {
                         args: [3, 255],
-                        msg: 'Campo "curso" dever ter 3 à 255 caracteres.'
+                        msg: 'Campo "nome" dever ter 3 à 255 caracteres.'
                     },
                 },
             },
 
+
+            sobrenome:{
+              type: Sequelize.STRING,
+              defaultValue: '',
+              validate:{
+                  len: {
+                      args: [3, 255],
+                      msg: 'Campo "sobrenome" dever ter 3 à 255 caracteres.'
+                  },
+              },
+          },
+
+          email: {
+            type: Sequelize.STRING,
+            defaultValue: '',
+            unique:{
+              msg: 'Email já existe'
+            },
+    
+            validate: {
+              isEmail: {
+                msg: 'Email inválido.',
+              },
+            },
+          },
+
+          classe:{
+            type: Sequelize.STRING,
+            defaultValue: '',
+            validate:{
+                len: {
+                    args: [3, 255],
+                    msg: 'Campo "classe" dever ter 3 à 255 caracteres.'
+                },
+            },
+        },
+
+        cadeira:{
+          type: Sequelize.STRING,
+          defaultValue: '',
+          validate:{
+              len: {
+                  args: [3, 255],
+                  msg: 'Campo "cadeira" dever ter 3 à 255 caracteres.'
+              },
+          },
+      },
 
             password_hash: {
                 type: Sequelize.STRING,

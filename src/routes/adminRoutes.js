@@ -7,7 +7,7 @@ const router =  new Router();
 
 
 router.post('/', AdminController.store);
-router.get('/', AdminController.index);
+router.get('/', loginRequired, AdminController.index);
 
 
 
