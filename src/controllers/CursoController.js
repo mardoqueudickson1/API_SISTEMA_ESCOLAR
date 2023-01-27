@@ -1,12 +1,17 @@
-import Admin from '../models/admin';
+import Curso from "../models/curso";
+import Professor from "../models/professor";
 
-class AdminController {
 
-    //Cria admin
+
+class CursoController {
+
+
+    //Cadastra curso na base ded dados
     async store(req, res) {
         try {
-            const novoAdmin = await Admin.create(req.body)
-            res.json(novoAdmin);
+
+            const novoCurso = await Curso.create(req.body)
+            res.json(novoCurso);
         } catch (e) {
             res.status(400).json({
                 errors: e.errors.map((err) => err.message)
@@ -15,13 +20,19 @@ class AdminController {
     }
 
 
-    //Listar todos os admins
+    //Listar todos os cursos
     async index(req, res) {
         try {
-            const admin = await Admin.findAll({
-                attributes: ['id', 'nome', 'sobrenome', 'email']
+            const curso = await Curso.findAll({
+                attributes: ['id', 'nome'],
+                order: [['id', 'DESC'], [Professor, 'id', 'DESC']],
+
+                include: {
+                    model: Professor,
+                    attributes: ['id', 'nome', 'sobrenome', 'email']
+                }
             });
-            res.json(admin);
+            res.json(curso);
         } catch (e) {
             res.status(400).json({
                 errors: e.errors.map((err) => err.message)
@@ -30,7 +41,7 @@ class AdminController {
     }
 
 
-    //Deleta admin
+    //Deleta curso
     async delete(req, res) {
         try {
             if (!req.params) {
@@ -39,11 +50,11 @@ class AdminController {
                 })
             }
 
-            const admin = await Admin.findByPk(req.params.id);
+            const curso = await Curso.findByPk(req.params.id);
 
-            await admin.destroy();
+            await curso.destroy();
             return res.json({
-                success: [`admin ${admin.nome} apagado com sucesso`]
+                success: [`Curso ${curso.nome} apagado com sucesso`]
             })
 
 
@@ -56,7 +67,8 @@ class AdminController {
     }
 
 
-    //Atualiza admin
+
+    //Atualiza curso
     async update(req, res) {
         try {
             if (!req.params) {
@@ -65,10 +77,10 @@ class AdminController {
                 })
             }
 
-            const admin = await Admin.findByPk(req.params.id);
+            const curso = await Curso.findByPk(req.params.id);
 
-            const novoAdmin = await admin.update(req.body);
-            return res.json(novoAdmin);
+            const novoCurso = await curso.update(req.body);
+            return res.json(novoCurso);
 
         } catch (e) {
             return res.status(400).json({
@@ -77,10 +89,6 @@ class AdminController {
 
         }
     }
-
-
-
 }
 
-
-export default new AdminController();
+export default new CursoController;

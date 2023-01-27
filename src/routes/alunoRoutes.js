@@ -3,13 +3,13 @@ import alunoController from "../controllers/alunoController";
 import loginRequired from "../middlewares/loginRequired";
 
 
-const router =  new Router();
+const router = new Router();
 
 
-router.post('/', loginRequired, alunoController.store);
-router.get('/', loginRequired, alunoController.index);
-router.put('/', loginRequired, alunoController.update);
-router.delete('/', loginRequired, alunoController.delete);
+router.post('/', alunoController.store);
+router.get('/', alunoController.index);
+router.put('/:id', alunoController.update);
+router.delete('/:id', alunoController.delete);
 
 
 

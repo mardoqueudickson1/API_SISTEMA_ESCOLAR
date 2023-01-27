@@ -9,7 +9,8 @@ import homeRoutes from './src/routes/homeRoutes';
 import alunoRoutes from './src/routes/alunoRoutes';
 import adminRoutes from './src/routes/adminRoutes';
 import TokenRoutes from './src/routes/TokenRoutes';
-import professorRoutes from './src/routes/professorRoutes';
+import cursoRouter  from './src/routes/cursoRoutes';
+import professorRouter  from './src/routes/professorRouter'
 
 class App {
   constructor() {
@@ -24,13 +25,15 @@ class App {
   }
 
 
-  //Todas as routas da aplicação
+  //Todas as routas da aplicação 
   routes() {
     this.app.use('/', homeRoutes);
     this.app.use('/aluno', alunoRoutes);
     this.app.use('/token', TokenRoutes);
     this.app.use('/admin', adminRoutes);
-    this.app.use('/professor', professorRoutes)
+    this.app.use('/curso', cursoRouter)
+    this.app.use('/professor', professorRouter)
+
   }
 }
 

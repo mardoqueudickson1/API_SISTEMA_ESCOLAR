@@ -27,19 +27,31 @@ class AlunoController {
     }
 
 
-    //Atualizar 
-    async update(req, res) {
-        try {
-            if (!req.params.id) {
-                return res.status(400).json({
-                    errors: ['ID não enviado']
-                })
-            }
-        } catch (error) {
-            return res.json(e.errors.map((err) => err.message))
+  //UPDATE
+  async update(req, res) {
+    try {
+      if (!req.params.id) {
+        return res.status(400).json({
+          errors: ['ID não enviado']
+        })
+      }
 
-        }
+      const aluno = await Aluno.findByPk(req.params.id);
+
+      if (!aluno) {
+        return res.status(400).json({
+          errors: ['Aluno não existe.']
+        })
+      }
+
+      const novosDados = await aluno.update(req.body)
+
+      return res.json(novosDados);
+    } catch (e) {
+      return res.json(e.errors.map((err) => err.message))
     }
+  }
+
 
 
     //DELETE
@@ -69,7 +81,7 @@ class AlunoController {
         }
     }
 
-    
+
 
 }
 
