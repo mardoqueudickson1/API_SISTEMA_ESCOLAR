@@ -15,8 +15,8 @@ export default class Aluno extends Model {
         defaultValue: '',
         validate: {
           len: {
-            args: [5, 10],
-            msg: 'Esse campo não pode ficar vazio.',
+            args: [8, 10],
+            msg: 'Campo numero não pode ficar vazio.',
           },
         },
       },  

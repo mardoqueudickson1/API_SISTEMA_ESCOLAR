@@ -4,9 +4,10 @@ import Admin from "../models/admin";
 import Aluno from "../models/aluno";
 import Curso from "../models/curso";
 import Professor from "../models/professor";
+import Notas from "../models/notas";
 
 
-const models = [Aluno, Admin, Curso, Professor];
+const models = [Aluno, Admin, Curso, Professor, Notas];
 
 const connection = new Sequelize(databaseConfig);
 
